@@ -1,13 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>{{appName}}</h1>
 
-<h4>NPM: </h4>
-<p>{{ npm }}</p> <!-- Ubah sesuai dengan npm kamu -->
-<h4>Name: </h4>
-<p>{{ name }}</p> <!-- Ubah sesuai dengan nama kamu -->
-<h4>Class: </h4>
-<p>{{ class }}</p> 
+<h5>NPM: </h5>
+<p>{{ npm }}</p>
+
+<h5>Name:</h5>
+<p>{{ name }}</p>
+
+<h5>Class:</h5>
+<p>{{ class }}</p>
+
+<a href="{% url 'main:add_jersey' %}">
+  <button>+ Add Product</button>
+</a>
 
 <a href="{% url 'main:show_dashboard' %}">
   <button type="button">Ke Dashboard</button>
 </a>
 
+<hr>
+
+{% if not jersey_list %}
+<p>Belum ada data jersey pada football shop.</p>
+{% else %}
+
+{% for jersey in jersey_list %}
+<div>
+  <h2><a href="{% url 'main:show_jersey' jersey.id %}">{{ jersey.title }}</a></h2>
+
+  <h1>{{jersey.name}}</h1>
+
+  {% if jersey.thumbnail %}
+  <img src="{{ jersey.thumbnail }}" alt="thumbnail" width="150" height="100">
+  <br />
+  {% endif %}
+
+  <p><a href="{% url 'main:show_jersey' jersey.id %}"><button>Read More</button></a></p>
+</div>
+
+<hr>
+{% endfor %}
+
+{% endif %}
+{% endblock content %}

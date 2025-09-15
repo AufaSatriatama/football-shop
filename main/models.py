@@ -4,6 +4,16 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
+
+    CATEGORY_CHOICES = [
+        ('home_jersey', 'Home_jersey'),
+        ('away_jersey', 'Away_jersey'),
+        ('third_jersey', 'Third_jersey'),
+        ('goalkeeper_jersey', 'Goalkeeper_jersey'),
+        ('thrift_jersey', 'Thrift_jersey'),
+        ('special_jersey', 'Special_jersey'),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField()
     price = models.IntegerField()
