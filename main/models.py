@@ -6,12 +6,12 @@ from django.db import models
 class Product(models.Model):
 
     CATEGORY_CHOICES = [
-        ('home_jersey', 'Home_jersey'),
-        ('away_jersey', 'Away_jersey'),
-        ('third_jersey', 'Third_jersey'),
-        ('goalkeeper_jersey', 'Goalkeeper_jersey'),
-        ('thrift_jersey', 'Thrift_jersey'),
-        ('special_jersey', 'Special_jersey'),
+        ('home_jersey', 'Home jersey'),
+        ('away_jersey', 'Away jersey'),
+        ('third_jersey', 'Third jersey'),
+        ('goalkeeper_jersey', 'Goalkeeper jersey'),
+        ('thrift_jersey', 'Thrift jersey'),
+        ('special_jersey', 'Special jersey'),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -19,7 +19,7 @@ class Product(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     thumbnail = models.URLField()
-    category = models.CharField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='home_jersey')
     is_featured = models.BooleanField()
 
     def __str__(self):

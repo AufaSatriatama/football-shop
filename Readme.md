@@ -57,3 +57,31 @@ git push origin master
 ## 6. 
 
 ### Saya rasa masih tidak ada perlu yang dikoreksi. Mungkin ini dikarenakan topik yang masih tidak membingungkan, cukup ikuti saja tutorial yang ada di dokumentasi yang tersedia.
+
+
+# Penjelasan Tugas 2
+
+## 1.
+
+### Dalam membuat aplikasi, jelas kita perlu berinteraksi dengan data. Mulai dari data sederhana seperti apakah pengguna sudah login, hingga data kompleks, kita tidak bisa lepas dari data. Dengan dmeikian, data delivery merupakan sesuatu yang sangat penting dalam membuat aplikasi
+
+## 2.
+
+### Saya rasa, sebagai praktisi, JSON lebih baik daripada XML karena JSON lebih populer digunakan yang mengakibatkan pembelajarannya menjadi lebih mudah dibanding XML. Semenjak javascript sangat banyak digunakan dalam pengembangan front end, penggunaan JSON menjadi sangat populer karena JSON berasal dari object javascript.
+
+## 3.
+
+### is_valid() digunakan untuk mengecek apakah data / form yang dikirim user merupakan form yang valid sesuai dengan peraturan yang kita tulis di forms.py (Untuk kasus di sini, forms.py mengikuti aturan yang ada di models.py seperti max length dan sebagainya).
+
+## 4.
+
+### Kita perlu menambahkan "csrf_token" dalam form. Ini untuk mencegah adanya penyerang yang mengirim request menggunakan cookie yang dimiliki oleh user tanpa sepengetahuan user. Penyerang dapat memanfaatkan ini dengan membuat sebuah tombol untuk mengirim request jahat ke aplikasi. csrf_token menangkal ini dengan membuat sebuah token yang nantinya nilai token ini akan dibandingkan dengan nilai token saat user mengirim request.
+
+## 5.
+
+### 
+
+## 6.
+
+### Tidak ada
+
