@@ -85,3 +85,16 @@ git push origin master
 
 ### Tidak ada
 
+# Hasil mengakses URL menggunakan postman
+
+## JSON
+![Alt text](./json_view.png)
+
+## JSON Dengan Id
+![Alt text](./json_id_view.png)
+
+## XML
+![Alt text](./xml_view.png)
+
+## XML Dengan Id
+![Alt text](./xml_id_view.png)
