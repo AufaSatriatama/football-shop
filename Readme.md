@@ -79,11 +79,43 @@ git push origin master
 
 ## 5.
 
-### 
+### Checklist 1
+
+#### Kita mulai dengan membuat 4 fungsi di views.py: show_xml, show_xml_by_id, show_json, show_json_by_id. Dengan ide mengembalikan semua object. Lalu, format dalam python tadi diubah ke format json dan xml dengan serializers. Terakhir, kita akan return HttpResponse
+
+### Checklist 2
+
+#### Lalu, kita dapat menambahkan path di urls.py agar kita bisa mengakses fungsi yang sudah kita definisikan di views.py tadi. Caranya, kita import terlebih dahulu fungsi-fungsi tadi ke urls.py. Setelah itu, kita tambahkan ke urlpatterns. 
+
+### Checklist 3
+
+#### Di line 15 pada file main.html, kita menambahkan sebuah blok "<a>" yang di dalamnya kita redirect ke url tempat "add_jersey" berada (pakai "add_jersey" karena kita menggunakan itu dalam "name" di urlpatterns). Untuk detail jersey, kita juga melakukan yang hampir sama. Akan tetapi, kali ini kita menambahkan "jersey.id" dalam href karena url jersey membutuhkan id dari jersey
+
+### Checklist 4
+
+#### Pertama-tama, kita harus membuat fungsi add_jersey di views.py. Di sana, kita isi dengan form bersama request POST (karena kita akan mengirim, bukan mengambil) lalu tambahkan if conditional untuk mengecek apakah form yang diisi oleh pengguna sesuai dengan kriteria yang kita deklarasikan di models.py. Lalu, kita kasih context dan kita return
+
+#### Lalu, kita daftarkan ke urls.py seperti biasa. Tidak lupa, kita juga harus membuat file html-nya. Di sini, kita membuat file add_jersey.html yang diisi dengan blok "<form>" dengan metode POST. Jangan lupa juga untuk menambahkan {% csrf_token %} agar aplikasi kita lebih aman.
+
+### Checklist 5
+
+#### Untuk detail jersey, kita melakukan yang hampir sama dengan add_jersey. Akan tetapi, kali ini kita menambahkan "jersey.id" dalam href karena url jersey membutuhkan id dari jersey
+
+### Checklist 6
+
+#### Kita isi readme.md sesuai petunjuk di soal
+
+### Checklist 7
+
+#### Kita install postman terlebih dahulu, kemudian kita bisa nyalakan server dari aplikasi kita. Setelah itu, kita dapat memasukkan url yang kita miliki untuk di-test di postman
+
+### Checklist 8
+
+#### Kita bisa buka vs code, lalu menuju bagian source control. Di sana, kita dapat langsung mengisi pesan commit. Lalu, kita tinggal pilih commit & push
 
 ## 6.
 
-### Tidak ada
+### Tidak ada. Saya rasa asdos sudah cukup baik :>
 
 # Hasil mengakses URL menggunakan postman
 
