@@ -165,4 +165,152 @@ git push origin master
  
 
 #### di main/views.py
+#### Lalu, kita tulis potongan kode berikut ke views.py
+
+```
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form':form}
+    return render(request, 'register.html', context)
+
+def login_user(request):
+   if request.method == 'POST':
+      form = AuthenticationForm(data=request.POST)
+
+      if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('main:show_main')
+
+   else:
+      form = AuthenticationForm(request)
+   context = {'form': form}
+   return render(request, 'login.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('main:login')
+
+```
+
+#### Lalu, kita dapat membuat file register.html dan login.html di main/templates
+
+#### register.html
  
+ ```
+ {% extends 'base.html' %}
+
+{% block meta %}
+<title>Register</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div>
+  <h1>Register</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input type="submit" name="submit" value="Daftar" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+
+{% endblock content %}
+```
+
+#### Di login.html
+
+```
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Login</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="login">
+  <h1>Login</h1>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td></td>
+        <td><input class="btn login_btn" type="submit" value="Login" /></td>
+      </tr>
+    </table>
+  </form>
+
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} Don't have an account yet?
+  <a href="{% url 'main:register' %}">Register Now</a>
+</div>
+
+{% endblock content %}
+```
+
+#### Untuk menyambungkan logout, kita taruh potongan kode berikut di main/templates/main.html di manapun kita suka
+
+```
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+```
+
+#### Setelah itu, kita sambungkan html yang telah kita buat tadi dengan fungsi dari views.py di urls.py. Kita buka main/urls.py, lalu kita import fungsi yang kita bikin di views.py tadi
+
+```
+from main.views import register
+from main.views import login_user
+from main.views import logout_user
+```
+
+#### Kemudian, kita tambahkan di urlpatterns[]
+
+```
+path('register/', register, name='register'),
+path('login/', login_user, name='login'),
+path('logout/', logout_user, name='logout'),
+```
+
+### Checkpoint 2
+
+#### Pertama-tama, kita bikin akun terlebih dahulu di halaman register. Lalu, kita dapat login ke halaman login menggunakan akun yang telah kita buat tadi. Setelah itu, kita dapat menekan tombol "add jersey" untuk menambahkan jersey yang kita inginkan. Di sana, kita isi semua datanya. Selanjutnya, kita tinggal menekan tombol "add jersey" agar jersey kita dapat terlihat oleh orang lain. Lakukan yang sama sebanyak tiga kali. Lalu buatkan akun baru lagi dan buat jersey tiga kali juga.
+
+### Checkpoint 3
+
+#### Buka main/models.py dan tambahkan potongan kode berikut untuk import
+
+```
+from django.contrib.auth.models import User
+```
+
+
+
