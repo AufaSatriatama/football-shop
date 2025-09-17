@@ -2,7 +2,7 @@
 
 https://aufa-daffa-footballshop.pbp.cs.ui.ac.id/
 
-# Penjelasan
+# Penjelasan Tugas 1
 
 ## 1. 
 
@@ -117,16 +117,40 @@ git push origin master
 
 ### Tidak ada. Saya rasa asdos sudah cukup baik :>
 
-# Hasil mengakses URL menggunakan postman
+## Hasil mengakses URL menggunakan postman
 
-## JSON
+### JSON
 ![Alt text](./json_view.png)
 
-## JSON Dengan Id
+### JSON Dengan Id
 ![Alt text](./json_id_view.png)
 
-## XML
+### XML
 ![Alt text](./xml_view.png)
 
-## XML Dengan Id
+### XML Dengan Id
 ![Alt text](./xml_id_view.png)
+
+# Penjelasan Tugas 3
+
+## 1.
+
+### Sederhananya, AuthenticationForm adalah template form digunakan pengguna untuk login ke aplikasi yang kita buat. Kelebihannya, kita hanya perlu mengimport template yang sudah diberikan django ini tanpa perlu format keamanannya, logika login berhasil / gagal sehingga developer dapat menghemat waktu. Kelemahannya, AuthenticationForm ini kurang fleksibel untuk diformat sesuka developer.
+
+## 2.
+
+### Autentikasi adalah proses untuk mengidentifikasi siapa pengguna tertentu (apakah pembeli, penjual, atau admin). Otorisasi adalah apa saja yang dapat dilakukan oleh role tersebut. Ada beberapa metode seperti has_view_permission(), has_add_permission(), has_change_permission() dan has_delete_permission() yang dapat digunakan untuk mengatur otoritas suatu method. Untuk authentikasi, django menyediakan "AuthenticationForm" yang dapat digunakan dengan mudah.
+
+## 3.
+
+### Salah satu keuntungan dari menyimpan state di cookies adalah data disimpan di browser pengguna. Hal ini dapat meringankan beban yang dialami oleh server. Kelemahannya, cookies lebih rentan dengan serangan berbahaya seperti XSS dan CSRF jika dikonfigurasi dengan salah. Untuk session, karena state disimpan di server, state akan lebih susah untuk terkena serangan. Kelemahannya, kebalikan dari cookies, session akan memberikan beban ke server karena data disimpan di server (terutama ketika ada banyak pengguna yang mengakses aplikasi).
+
+## 4.
+
+### Secara default, penggunaan cookies tidak aman bagi pengembangan web. Salah satu alasannya adalah rentannya cookies akan serangan XSS dan CSRF. Django sendiri memiliki fitur bawaan yang dapat menangkal berbagai macam serangan CSRF selama kita menggunakannya dengan benar. Saat kita deploy aplikasi kita dengan HTTPS, CsrfViewMiddleware akan mengecek apakah HTTP header itu di-set ke URL yang asalnya sama (termasuk subdomain dan port).
+
+## 5.
+
+### Checkpoint 1
+
+#### 
