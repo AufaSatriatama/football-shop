@@ -32,7 +32,8 @@ def show_main(request):
         'name': 'Aufa Daffa Satriatama',
         'class': 'PBP B',
         'jersey_list': jersey_list,
-        'last_login': request.COOKIES.get('last_login', 'Never')
+        'last_login': request.COOKIES.get('last_login', 'Never'),
+        'username': request.user.username
     }
 
     return render(request, "main.html", context)
