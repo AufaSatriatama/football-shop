@@ -312,5 +312,20 @@ path('logout/', logout_user, name='logout'),
 from django.contrib.auth.models import User
 ```
 
+#### Kemudian, di main/models.py di bagian products, kita tambahkan potongan kode berikut
+
+```
+class Product(models.Model):
+     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) # tambahkan ini
+```
+
+#### Selanjutnya, kita lakukan migrasi agar perubahan pada models.py terjadi
+
+### Checkpoint 4
+
+#### 
+
+
+
 
 
