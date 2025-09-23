@@ -323,7 +323,15 @@ class Product(models.Model):
 
 ### Checkpoint 4
 
-#### 
+#### di main/views.py, kita tambahkan
+```
+'username': request.user.username
+```
+#### di bagian context, lalu, kita tinggal tambahkan 
+```
+<h5>Username: {{username}}</h5>
+```
+#### di main.html
 
 
 
