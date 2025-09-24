@@ -5,6 +5,8 @@ from main.views import show_main, add_jersey, show_jersey, show_xml, show_json, 
 from main.views import register
 from main.views import login_user
 from main.views import logout_user
+from main.views import edit_jersey
+from main.views import delete_jersey
 
 app_name = 'main'
 
@@ -20,4 +22,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('jersey/<uuid:id>/edit', edit_jersey, name='edit_jersey'),
+    path('jersey/<uuid:id>/delete', delete_jersey, name='delete_jersey'),
 ]

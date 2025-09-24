@@ -50,7 +50,6 @@ def add_jersey(request):
     context = {'form': form}
     return render(request, "add_jersey.html", context)
 
-
 def show_dashboard(request):
 
 
@@ -86,8 +85,8 @@ def show_json_by_id(request, jersey_id):
 
 def show_xml_by_id(request, jersey_id):
    try:
-       news_item = Product.objects.filter(pk=jersey_id)
-       xml_data = serializers.serialize("xml", news_item)
+       jersey_item = Product.objects.filter(pk=jersey_id)
+       xml_data = serializers.serialize("xml", jersey_item)
        return HttpResponse(xml_data, content_type="application/xml")
    except Product.DoesNotExist:
        return HttpResponse(status=404)
@@ -125,5 +124,23 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_jersey(request, id):
+    jersey = get_object_or_404(Product, pk=id)
+    form = ProductForm(request.POST or None, instance=jersey)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "edit_jersey.html", context) 
+
+def delete_jersey(request, id):
+    jersey = get_object_or_404(Product, pk=id)
+    jersey.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 
