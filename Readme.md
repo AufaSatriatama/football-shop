@@ -375,8 +375,51 @@ class Product(models.Model):
 
 ### Checkpoint 2
 
-#### 
+#### Kita bisa membuat halaman pada login, register, dan lain-lain dengan cara mempelajari dari tutorial, hingga sumber belajar lainnya.
 
+### Checkpoint 3
+
+```
+        <a href="?filter=my" class="{% if request.GET.filter == 'my' %} bg-green-600 text-white{% else %}bg-white text-gray-700 border border-gray-300{% endif %} px-4 py-2 rounded-md font-medium transition-colors hover:bg-green-600 hover:text-white">
+          My Jerseys
+        </a>
+```
+
+#### Potongan kode di atas digunakan untuk memfilter apakah kita sudah mem-publish jersey
+
+``` 
+{% if not jersey_list %}
+```
+
+#### Potongan kode di atas digunakan untuk mengecek apakah jersey_list kosong atau tidak
+
+### Checkpoint 4
+
+```
+        {% for jersey in jersey_list %}
+        
+          {% include 'card_jersey.html' with jersey=jersey %}
+        {% endfor %}
+```
+
+#### Potongan kode di atas digunakan untuk looping dari semua jersey yang ada. 
+
+### Checkpoint 5
+
+```
+          <a href="{% url 'main:edit_jersey' jersey.id %}" class="text-gray-600 hover:text-gray-700 text-sm transition-colors">
+            Edit
+          </a>
+          <a href="{% url 'main:delete_jersey' jersey.id %}" class="text-red-600 hover:text-red-700 text-sm transition-colors">
+            Delete
+          </a>
+```
+
+#### Potongan kode di atas digunakan untuk melakukan aksi edit dan delete pada sebuah jersey
+
+### Checkpoint 6
+
+#### Kita buat file navbar.html di /templates. Di sana, kita tambahkan apa saja isi dari navbar-nya di bagian "li". Setelah itu, kita bisa masukkan navbar.html ini di main.html
 
 
 
