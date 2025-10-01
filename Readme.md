@@ -331,7 +331,54 @@ class Product(models.Model):
 ```
 <h5>Username: {{username}}</h5>
 ```
-#### di main.html
+
+# Penjelasan Tugas 5
+
+## 1 
+
+### !important merupakan tag yang akan membuat semua css selector yang lain ter-override, setelah itu ada format inline yang membuat semua css selector di bawahnya akan ter-override 
+
+## 2
+
+### Responsive design menjadi konsep yang penting agar pengguna dapat menggunakan aplikasi kita dengan nyaman. Kalau nyaman, pengguna akan terus menggunakan aplikasi kita. 
+
+### Contoh web responsif: Github
+### Contoh web tidak responsif: Siak ng
+![Alt text](./screenshot_siak.jpeg)
+
+## 3
+
+![Alt text](./css_box.png)
+### Margin: Jarak antar elemen
+### Border: Garis pembatas elemen
+### Padding: Jarak antara isi elemen dengan border
+
+### Kita bisa mengimplementasikannya dengan styling di css:
+
+```
+.element {
+    margin: 10px; /* Jarak antar elemen */
+    border: 2px solid black; /* Garis pembatas elemen */
+    padding: 15px; /* Jarak antara isi elemen dengan border */
+}
+```
+
+## 4
+
+### Flex box adalah cara layout model yang digunakan untuk mengatur tata letak elemen dalam satu dimensi (baris atau kolom). Sementara grid adalah cara layout model yang digunakan untuk mengatur tata letak elemen dalam baris dan kolom.
+
+## 5
+
+### Checkpoint 1
+
+#### Pertama-tama, kita buat fungsi edit_jersey dan delete_jersey di main/views.py, setelah itu, kita buat file edit_jersey.html dan delete_jersey.html di main/templates. Kemudian, kita menambahkan path di main/urls.py. Setelah itu, kita masukkan button di dalam for loop dari jersey di main.hmtl
+
+### Checkpoint 2
+
+#### 
+
+
+
 
 
 
