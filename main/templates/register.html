@@ -2,6 +2,7 @@
 
 {% block meta %}
 <title>Register - Football Shop</title>
+<meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock meta %}
 
 {% block content %}
@@ -39,7 +40,7 @@
         </div>
       {% endif %}
 
-      <form method="POST" action="" class="space-y-5">
+      <form method="POST" action="{% url 'main:register-ajax' %}" class="space-y-5" id="register-form">
         {% csrf_token %}
         
         <div>
@@ -115,4 +116,46 @@
     </div>
   </div>
 </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+  const registerForm = document.getElementById('register-form');
+
+  registerForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(registerForm);
+    const submitButton = registerForm.querySelector('button[type="submit"]');
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Registering your account..."
+
+    try {
+      const response = await fetch (registerForm.action || window.location.href, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,      
+        }
+      });
+
+      const data = await response.json();
+
+      if (data.success){
+        window.location.href = data.redirect_url;
+      }
+
+    } catch (error) {
+      console.error('Login error: ', error);
+    }
+
+  })
+
+});
+
+</script>
+
 {% endblock content %}

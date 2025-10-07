@@ -2,6 +2,7 @@
 
 {% block meta %}
 <title>Login - Football Shop</title>
+<meta name="csrf-token" content="{{ csrf_token }}">
 {% endblock meta %}
 
 {% block content %}
@@ -38,7 +39,7 @@
         </div>
       {% endif %}
 
-      <form method="POST" action="" class="space-y-6">
+      <form method="POST" action="" class="space-y-6" id="login-form">
         {% csrf_token %}
         
         <div>
@@ -102,4 +103,69 @@
     </div>
   </div>
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form');
+    
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(loginForm);
+        const submitButton = loginForm.querySelector('button[type="submit"]');
+        
+        // Disable submit button and show loading state
+        submitButton.disabled = true;
+        submitButton.textContent = 'Signing in...';
+      
+        
+        try {
+            const response = await fetch(loginForm.action || window.location.href, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                },
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Show success message
+                
+                
+                // Redirect after a short delay
+                window.location.href = data.redirect_url;
+            }
+        } finally {
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.textContent = 'Sign In';
+        }
+    });
+});
+
+
+
+// function showMessage(message, type) {
+//     const messageContainer = document.createElement('div');
+//     messageContainer.className = `px-4 py-3 rounded-md text-sm border mt-4 ${
+//         type === 'success' 
+//             ? 'bg-green-50 border-green-200 text-green-700'
+//             : 'bg-red-50 border-red-200 text-red-700'
+//     }`;
+//     messageContainer.textContent = message;
+    
+//     const form = document.getElementById('login-form');
+//     form.appendChild(messageContainer);
+    
+//     // Remove message after 5 seconds
+//     setTimeout(() => {
+//         messageContainer.remove();
+//     }, 5000);
+// }
+</script>
+
 {% endblock content %}

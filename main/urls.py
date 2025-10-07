@@ -7,6 +7,9 @@ from main.views import login_user
 from main.views import logout_user
 from main.views import edit_jersey
 from main.views import delete_jersey
+from main.views import register_ajax
+from main.views import add_jersey_entry_ajax
+from main.views import delete_jersey_ajax
 
 app_name = 'main'
 
@@ -20,8 +23,11 @@ urlpatterns = [
     path('xml/<str:jersey_id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<str:jersey_id>/', show_json_by_id, name='show_json_by_id'),
     path('register/', register, name='register'),
+    path('register-ajax', register_ajax, name='register-ajax'),
+    path('delete-jersey-ajax/<uuid:id>', delete_jersey_ajax, name='delete_jersey_ajax'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+    path('add-jersey-entry-ajax', add_jersey_entry_ajax, name='add_jersey_entry_ajax'),
     path('jersey/<uuid:id>/edit', edit_jersey, name='edit_jersey'),
     path('jersey/<uuid:id>/delete', delete_jersey, name='delete_jersey'),
 ]
