@@ -1,3 +1,5 @@
+
+
 function showToast(title, message = '', type = 'success', duration = 3000) {
     const toast = document.getElementById('toast-component');
     const toastTitle = document.getElementById('toast-title');
@@ -17,23 +19,23 @@ function showToast(title, message = '', type = 'success', duration = 3000) {
     switch (type) {
         case 'success':
             iconClass = '✅';
-            bgClass = 'bg-green-100 border border-green-300 text-green-800';
+            bgClass = 'bg-white border border-blue-500 text-blue-800';
             break;
         case 'error':
             iconClass = '❌';
-            bgClass = 'bg-red-100 border border-red-300 text-red-800';
+            bgClass = 'bg-white border border-red-300 text-red-800';
             break;
         case 'warning':
             iconClass = '⚠️';
-            bgClass = 'bg-yellow-100 border border-yellow-300 text-yellow-800';
+            bgClass = 'bg-white border border-yellow-300 text-yellow-800';
             break;
         case 'info':
             iconClass = 'ℹ️';
-            bgClass = 'bg-blue-100 border border-blue-300 text-blue-800';
+            bgClass = 'bg-white border border-blue-300 text-blue-800';
             break;
         default:
             iconClass = 'ℹ️';
-            bgClass = 'bg-gray-100 border border-gray-300 text-gray-800';
+            bgClass = 'bg-white border border-gray-300 text-gray-800';
     }
     
     toastIcon.textContent = iconClass;
@@ -49,3 +51,4 @@ function showToast(title, message = '', type = 'success', duration = 3000) {
         toast.classList.add('opacity-0');
     }, duration);
 }
+
