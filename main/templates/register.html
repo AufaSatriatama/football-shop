@@ -132,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function(){
     submitButton.disabled = true;
     submitButton.textContent = "Registering your account..."
 
+    showToast('Please wait...', 'Registering your account', 'success');
+
     try {
       const response = await fetch (registerForm.action || window.location.href, {
         method: 'POST',
@@ -146,10 +148,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
       if (data.success){
         window.location.href = data.redirect_url;
+        showToast('Welcome', 'Register succesfull', 'success'), 5000;
       }
 
     } catch (error) {
       console.error('Login error: ', error);
+      showToast('Register Failed', 'Please try again', 'error');
     }
 
   })

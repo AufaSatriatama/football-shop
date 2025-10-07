@@ -88,4 +88,109 @@
         </article>
     </div>
 </div>
+
+<script>
+// Configuration
+const jerseyId = "{{ jersey.id }}";
+const JERSEY_DETAIL_ENDPOINT = `{% url 'main:show_json_by_id' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', jerseyId);
+
+// DOM Elements
+const loadingState = document.getElementById('loading-state');
+const errorState = document.getElementById('error-state');
+const articleContent = document.getElementById('article-content');
+const badgesContainer = document.getElementById('badges-container');
+const articleTitle = document.getElementById('article-title');
+const articleDate = document.getElementById('article-date');
+const articleViews = document.getElementById('article-views');
+const featuredImageContainer = document.getElementById('featured-image-container');
+const featuredImage = document.getElementById('featured-image');
+const articleContentText = document.getElementById('article-content-text');
+const articleAuthor = document.getElementById('article-author');
+
+// Show/hide page sections
+function showState(state) {
+    loadingState.classList.toggle('hidden', state !== 'loading');
+    errorState.classList.toggle('hidden', state !== 'error');
+    articleContent.classList.toggle('hidden', state !== 'ready');
+}
+
+// Get readable category name
+function getCategoryLabel(categoryCode) {
+    const categoryMapping = {
+        home_jersey: 'Home jersey',
+        away_jersey: 'Away jersey',
+        third_jersey: 'Third jersey',
+        goalkeeper_jersey: 'Goalkeeper jersey',
+        thrift_jersey: 'Thrift jersey',
+        special_jersey: 'Special jersey',
+    };
+    return categoryMapping[categoryCode] || categoryCode;
+}
+
+// Render article content
+function renderArticle(jersey) {
+    // Set title
+    articleTitle.textContent = jersey.name;
+    document.title = `${jersey.name} - Football Jersey`;
+    
+    // Set badges
+    badgesContainer.innerHTML = '';
+    
+    // Category badge
+    const categoryBadge = document.createElement('span');
+    categoryBadge.className = 'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-green-600 text-white';
+    categoryBadge.textContent = getCategoryLabel(jersey.category);
+    badgesContainer.appendChild(categoryBadge);
+    
+    // Featured badge
+    if (jersey.is_featured) {
+        const featuredBadge = document.createElement('span');
+        featuredBadge.className = 'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800';
+        featuredBadge.textContent = 'Featured';
+        badgesContainer.appendChild(featuredBadge);
+    }
+       
+    // Set featured image
+    if (jersey.thumbnail) {
+        featuredImage.src = jersey.thumbnail;
+        featuredImage.alt = jersey.name;
+        featuredImageContainer.classList.remove('hidden');
+    } else {
+        featuredImageContainer.classList.add('hidden');
+    }
+    
+    // Set content
+    articleContentText.textContent = jersey.description;
+    
+    // Set author
+    const authorName = jersey.user_username || 'Anonymous';
+    articleAuthor.textContent = `Author: ${authorName}`;
+}
+
+// Fetch news detail
+async function loadJerseyDetail() {
+    try {
+        showState('loading');
+        
+        const response = await fetch(JERSEY_DETAIL_ENDPOINT, {
+            headers: { 'Accept': 'application/json' },
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch news detail');
+        }
+
+        const jerseyData = await response.json();
+        renderArticle(jerseyData);
+        showState('ready');
+    } catch (error) {
+        console.error('Error loading jersey detail:', error);
+        showState('error');
+    }
+}
+
+// Initialize page
+loadJerseyDetail();
+</script>
+
 {% endblock content %}

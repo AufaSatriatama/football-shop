@@ -40,12 +40,12 @@ function showToast(title, message = '', type = 'success', duration = 3000) {
     toast.className = `fixed bottom-8 right-8 p-4 px-8 rounded-xl shadow-xl z-50 transition-all duration-300 flex items-center gap-4 ${bgClass}`;
     
     // Show toast
-    toast.classList.remove('opacity-0', 'translate-y-64');
-    toast.classList.add('opacity-100', 'translate-y-0');
+    toast.classList.remove('opacity-0');
+    toast.classList.add('opacity-100');
     
     // Hide toast after duration
     setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-64');
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
     }, duration);
 }

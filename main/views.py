@@ -112,7 +112,7 @@ def show_json_by_id(request, jersey_id):
             'description': jersey.description,
             'category': jersey.category,
             'thumbnail': jersey.thumbnail,
-            'created_at': jersey.created_at.isoformat() if jersey.created_at else None,
+            
             'is_featured': jersey.is_featured,
             'user_id': jersey.user_id,
             'user_username': jersey.user.username if jersey.user_id else None,
@@ -157,6 +157,18 @@ def register_ajax(request):
             }
 
             return JsonResponse(response_data)
+        else:
+            response_data = {
+                "success": False,
+                "errors": form.errors
+            }
+
+            return JsonResponse(response_data)
+
+    return JsonResponse({
+        "success": False,
+        "error": "Invalid request method"
+    }, status=405)
 
 def login_user(request):
     if request.method == 'POST':
@@ -212,6 +224,19 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+# def logout_user(request):
+#     if request.method == 'GET':
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             response = JsonResponse({'success': True})
+#             response.delete_cookie('last_login')
+#             return response
+#         else:
+#             return JsonResponse({'success': False})
+#     return JsonResponse({
+#         "success": False,
+#         "error": "Invalid request method"
+#     }, status=405)
+
 @csrf_exempt
 def edit_jersey(request, id):
     jersey = get_object_or_404(Product, pk=id)
@@ -257,6 +282,7 @@ def delete_jersey(request, id):
     jersey = get_object_or_404(Product, pk=id)
     jersey.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
+
 
 @csrf_exempt
 def delete_jersey_ajax(request, id):

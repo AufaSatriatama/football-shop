@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Disable submit button and show loading state
         submitButton.disabled = true;
         submitButton.textContent = 'Signing in...';
+
+        showToast('Logging in', 'Loading', 'success');
       
         
         try {
@@ -134,12 +136,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (data.success) {
                 // Show success message
-                
+                showToast('Welcome', 'Login succesfull', 'success', 50000);
                 
                 // Redirect after a short delay
                 window.location.href = data.redirect_url;
             }
-        } finally {
+        }catch(error){
+          showToast('Login Failed', 'Please try again', 'error');
+        }
+         
+        finally {
             // Re-enable submit button
             submitButton.disabled = false;
             submitButton.textContent = 'Sign In';
