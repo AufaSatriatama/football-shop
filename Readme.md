@@ -422,8 +422,35 @@ class Product(models.Model):
 #### Kita buat file navbar.html di /templates. Di sana, kita tambahkan apa saja isi dari navbar-nya di bagian "li". Setelah itu, kita bisa masukkan navbar.html ini di main.html
 
 
+# Penjelasan Tugas 6
 
+## 1
 
+### Synchronus request: dijalankan secara berurutan. Kode berikutnya dijalankan setelah kode sebelumnya selesai dijalankan.
 
+### Asynchronus request: dijalankan secara bersamaan. Kode berikutnya dapat dijalankan tanpa menunggu kode sebelumnya selesai dijalankan.
 
+## 2
+
+### 1. Browser mengirim request ke server
+### 2. Server memproses request tersebut
+### 3. django akan membaca urls.py untuk mencocokkan request dengan endpoint yang ada
+### 4. Setelah menemukan endpoint yang sesuai, django akan mengeksekusi fungsi yang ada di views.py
+### 5. Browser menerima response dari server
+
+## 3
+
+### 1. Tidak perlu refresh halaman untuk melihat perubahan, ini membuat ajax bagus untuk aplikasi yang membutuhkan update data secara real-time
+### 2. Mengurangi beban server, karena hanya data yang diperlukan saja (JSON) yang dikirim
+### 3. Meningkatkan UX, karena aplikasi terasa lebih responsif dan interaktif
+
+## 4
+
+### 1. Kita bisa menggunakan csrf token pada bagian login dan register untuk mencegah serangan CSRF.
+### 2. Validasi input (apakah password kuat? apakah format email valid?)
+### 3. Hashing pada password
+
+## 5
+
+### AJAX sangat memengaruhi pengalaman pengguna (UX) pada aplikasi web. Dengan AJAX, aplikasi web dapat memberikan interaksi yang lebih cepat dan responsif tanpa perlu memuat ulang seluruh halaman. Hal ini membuat pengguna merasa lebih nyaman dan efisien saat menggunakan aplikasi web. Bayangkan misalnya user harus reload page terus menerus karena kita tidak menggunakan AJAX.
 
